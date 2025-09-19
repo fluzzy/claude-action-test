@@ -1,4 +1,4 @@
-name: PR Review + Claude Mentions
+name: Claude Action
 
 on:
   pull_request:
@@ -31,7 +31,7 @@ jobs:
       # -----------------------
       # PR 자동 리뷰 + PR 멘션 리뷰 (단일 스텝)
       # -----------------------
-      - name: Review on PR events (auto & mention)
+      - name: Review on PR events
         if: |
           github.event_name == 'pull_request' ||
           (
@@ -49,7 +49,7 @@ jobs:
       # -----------------------
       # 이슈 멘션 응답 (툴 권한 불필요)
       # -----------------------
-      - name: Run Claude on Issue mention (no extra tools)
+      - name: Run Claude on Issue mention
         if: |
           (
             github.event_name == 'issues' &&
@@ -63,6 +63,13 @@ jobs:
         with:
           prompt: |
             Read the issue (title/body or comment) and post ONE structured comment in Korean:
-            Summary, Root Causes, Reproduction, Fix Plan, Tests(DoD), Missing Info.
+            ## Summary
+            ## Root Causes
+            ## Reproduction
+            ## Fix Plan
+            ## Tests (DoD)
+            ## Missing Info
             Keep it concise and immediately actionable. Follow CLAUDE.md if present.
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          claude_args: |
+            --allowedTools "Bash(gh issue comment:*)"
