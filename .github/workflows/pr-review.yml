@@ -61,5 +61,8 @@ jobs:
           )
         uses: anthropics/claude-code-action@v1
         with:
-          prompt: '/issue'
+          prompt: |
+            Read the issue (title/body or comment) and post ONE structured comment in Korean:
+            Summary, Root Causes, Reproduction, Fix Plan, Tests(DoD), Missing Info.
+            Keep it concise and immediately actionable. Follow CLAUDE.md if present.
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
