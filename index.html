@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Alert 예제 (HTML/CSS/JS)</title>
+    <style>
+      :root {
+        --bg: #0f172a;
+        --panel: #111827;
+        --text: #e5e7eb;
+        --muted: #9ca3af;
+        --primary: #3b82f6;
+        --primary-600: #2563eb;
+        --ring: rgba(59, 130, 246, 0.5);
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+          Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial,
+          'Apple Color Emoji', 'Segoe UI Emoji';
+        background: radial-gradient(
+          1200px 800px at 50% -10%,
+          #1f2937 0%,
+          var(--bg) 40%,
+          #0b1024 100%
+        );
+        color: var(--text);
+        display: grid;
+        place-items: center;
+      }
+
+      .card {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.04),
+          rgba(255, 255, 255, 0.02)
+        );
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(8px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+        border-radius: 16px;
+        padding: 32px;
+        width: min(92vw, 520px);
+      }
+
+      h1 {
+        margin: 0 0 8px;
+        font-size: 1.5rem;
+        letter-spacing: 0.2px;
+      }
+
+      p.desc {
+        margin: 0 0 20px;
+        color: var(--muted);
+      }
+
+      .row {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        appearance: none;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: linear-gradient(
+          180deg,
+          rgba(59, 130, 246, 0.18),
+          rgba(59, 130, 246, 0.12)
+        );
+        color: white;
+        padding: 10px 16px;
+        border-radius: 10px;
+        font-weight: 600;
+        letter-spacing: 0.2px;
+        cursor: pointer;
+        transition: transform 120ms ease, background 120ms ease,
+          box-shadow 120ms ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-1px);
+        background: linear-gradient(
+          180deg,
+          rgba(59, 130, 246, 0.28),
+          rgba(59, 130, 246, 0.18)
+        );
+        box-shadow: 0 8px 20px rgba(59, 130, 246, 0.25);
+      }
+
+      .btn:active {
+        transform: translateY(0);
+        background: linear-gradient(
+          180deg,
+          rgba(37, 99, 235, 0.35),
+          rgba(37, 99, 235, 0.22)
+        );
+      }
+
+      .btn.secondary {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.08),
+          rgba(255, 255, 255, 0.04)
+        );
+      }
+
+      .btn:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 3px var(--ring);
+      }
+
+      code {
+        padding: 2px 6px;
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="card">
+      <h1>Alert 예제</h1>
+      <p class="desc">
+        버튼을 클릭하면 브라우저 <code>alert()</code>가 실행됩니다.
+      </p>
+
+      <div class="row">
+        <button id="alertBtn" type="button" class="btn">Alert 띄우기</button>
+        <button id="customBtn" type="button" class="btn secondary">
+          커스텀 메시지
+        </button>
+      </div>
+    </main>
+
+    <script>
+      document.getElementById('alertBtn').addEventListener('click', () => {
+        alert('안녕하세요! 이것은 alert 예제입니다.');
+      });
+
+      document.getElementById('customBtn').addEventListener('click', () => {
+        const msg = prompt(
+          '알림에 표시할 메시지를 입력하세요:',
+          '커스텀 알림 메시지'
+        );
+        if (msg !== null) {
+          alert(msg);
+        }
+      });
+    </script>
+  </body>
+</html>
